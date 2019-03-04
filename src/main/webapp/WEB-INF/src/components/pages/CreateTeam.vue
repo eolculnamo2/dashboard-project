@@ -33,7 +33,7 @@
                         <div>
                             <div class="ct-label">Admin Password</div>
                             <input class="ct-input"
-                                   type="text"
+                                   type="password"
                                    v-model="adminPassword">
                         </div>
                         <div>
@@ -45,7 +45,7 @@
                         <div>
                             <div class="ct-label">Confirm Password</div>
                             <input class="ct-input"
-                                   type="text"
+                                   type="password"
                                    v-model="confirmPassword">
                         </div>
                     </div>
@@ -71,7 +71,8 @@
                         </div>
                     </div>
                     <button class="ct-create-btn"
-                            type="button">Create Team</button>
+                            type="button"
+                            @click="createTeam()">Create Team</button>
                 </div>
             </div>
         <main-footer></main-footer>
@@ -103,6 +104,26 @@ export default {
         }
     },
     methods: {
+        createTeam() {
+
+            const payload = {
+                teamname: this.teamname,
+                adminDisplayName: this.adminDisplayName,
+                adminUsername: this.adminUsername,
+                adminPassword: this.adminPassword,
+                adminEmail: this.adminEmail,
+                confirmPassword: this.confirmPassword,
+                teammates: this.teammates
+            }
+
+            fetch('/create-team',{
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+            })
+           // .then(() => window.location.href="/");
+        },
         addTeammate() {
             this.teammates.push({
                 email: "",

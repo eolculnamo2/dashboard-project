@@ -18,23 +18,29 @@
                 </div>
                 <div class="login-right-side">
                     <h3 class="login-big-header login-big-header--t-align-center">Login</h3>
-                    <div class="login-credentials-box">
-                        <div class="login-credential-text">Username</div>
-                        <input class="login-credentials-input"
-                               type="text"
-                               v-model="username">
-                        <div class="login-credential-text">Password</div>
-                        <input class="login-credentials-input" 
-                               type="password"
-                               v-model="password">
-                        <div class="login-credentials-flex">
-                            <div class="login-credentials-links">Forgot Password?</div>
-                            <router-link to="/create-team" exact><div class="login-credentials-links">Create New Team</div></router-link>
+                    <form action="/login-user" method="POST" ref="loginForm">
+                        <div class="login-credentials-box">
+                            <div class="login-credential-text">Username</div>
+                            <input class="login-credentials-input"
+                                type="text"
+                                name="username"
+                                id="username"
+                                v-model="username">
+                            <div class="login-credential-text">Password</div>
+                            <input class="login-credentials-input" 
+                                type="password"
+                                id="password"
+                                name="password"
+                                v-model="password">
+                            <div class="login-credentials-flex">
+                                <div class="login-credentials-links">Forgot Password?</div>
+                                <router-link to="/create-team" exact><div class="login-credentials-links">Create New Team</div></router-link>
+                            </div>
+                            <button class="login-credentials-button" type="submit">
+                                Login
+                            </button>
                         </div>
-                        <button class="login-credentials-button" type="button">
-                            Login
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -53,6 +59,11 @@ export default {
         return {
             username: "",
             password: ""
+        }
+    },
+    methods: {
+        login() {
+            this.$refs.loginForm.submit();
         }
     }
 }

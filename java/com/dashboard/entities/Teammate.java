@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -25,31 +27,34 @@ public class Teammate {
 	@Column(name="email")
 	private String email;
 	@Column(name="authority")
-	private int authority;
+	private int authorityLevel;
 	@Column(name="teamname")
 	private String teamname;
+	@Column(name="enabled")
+	private int enabled;
 	@Column(table="authorities")
-	private String authorityLevel;
+	private String authority;
 	
 	public Teammate() {
 		
 	}
 	
-	public Teammate(String username, String password, String displayName, String email, int authority, String teamname) {
+	public Teammate(String username, String password, String displayName, String email, int authorityLevel, String teamname) {
 		this.username = username;
-		this.password = password;
+		this.password = "{bcrypt}"+new BCryptPasswordEncoder().encode(password);;
 		this.displayName = displayName;
 		this.email = email;
-		this.authority = authority;
+		this.authorityLevel = authorityLevel;
 		this.teamname = teamname;
-		switch(authority) {
-			case 1: this.authorityLevel = "ROLE_USER";
+		switch(authorityLevel) {
+			case 1: this.authority = "ROLE_USER";
 					break;
-			case 2: this.authorityLevel = "ROLE_ADMIN";
+			case 2: this.authority = "ROLE_ADMIN";
 					break;
-			case 3: this.authorityLevel = "ROLE_OWNER";
+			case 3: this.authority = "ROLE_OWNER";
 					break;
-			default: this.authorityLevel = "ROLE_USER";
+			default: this.authority = "ROLE_USER";
+			this.enabled=1;
 		}
 	}
 	
@@ -77,10 +82,10 @@ public class Teammate {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getAuthority() {
+	public String getAuthority() {
 		return authority;
 	}
-	public void setAuthority(int authority) {
+	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
 	public String getTeamname() {
@@ -89,10 +94,10 @@ public class Teammate {
 	public void setTeamname(String teamname) {
 		this.teamname = teamname;
 	}
-	public String getAuthorityLevel() {
+	public int getAuthorityLevel() {
 		return authorityLevel;
 	}
-	public void setAuthorityLevel(String authorityLevel) {
+	public void setAuthorityLevel(int authorityLevel) {
 		this.authorityLevel = authorityLevel;
 	}
 }

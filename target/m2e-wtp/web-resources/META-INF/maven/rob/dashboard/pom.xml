@@ -113,7 +113,7 @@
 
   </dependencies>
   <build>
-    <finalName>fcc-tstamp-java</finalName>
+    <finalName>/</finalName>
     <!-- Tells Maven that we do not need a web.xml -->
     	<pluginManagement>
     		<plugins>
