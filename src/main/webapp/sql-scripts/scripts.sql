@@ -43,6 +43,8 @@ CREATE TABLE `users` (
   `email` varchar(45) DEFAULT NULL,
   `authority` int(5) DEFAULT NULL,
   `teamname` varchar(45) DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT NULL,
+  
   
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
