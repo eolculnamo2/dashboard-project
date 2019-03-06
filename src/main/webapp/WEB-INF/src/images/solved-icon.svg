@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4f9a00;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        fill-rule: evenodd;
+        opacity: 0.967;
+      }
+    </style>
+  </defs>
+  <g id="Group_335" data-name="Group 335" transform="translate(-354 -678)">
+    <circle id="Ellipse_12" data-name="Ellipse 12" class="cls-1" cx="9" cy="9" r="9" transform="translate(354 678)"/>
+    <g id="ic_check" transform="translate(58.6 587.011)">
+      <path id="path" class="cls-2" d="M5.859,11.146l-1.844-2.2L3.4,9.681l2.459,2.93,5.268-6.278L10.512,5.6Z" transform="translate(297 91.389)"/>
+    </g>
+  </g>
+</svg>

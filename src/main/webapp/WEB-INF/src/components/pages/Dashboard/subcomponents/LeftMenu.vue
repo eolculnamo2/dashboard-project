@@ -10,7 +10,7 @@
             <ul class="lm-links">
                 <li class="lm-live-updates lm-links--current">Live Update</li>
                 <li class="lm-settings">Settings</li>
-                <li class="lm-logout">Logout</li>
+                <li class="lm-logout"><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </div>

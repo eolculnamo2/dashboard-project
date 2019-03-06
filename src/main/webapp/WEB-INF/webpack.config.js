@@ -33,6 +33,10 @@ module.exports = {
                 loader: 'url-loader'
                 
             },
+            { 
+                test: /\.svg$/, 
+                loader: 'raw-loader' 
+            }, 
             {
                 test: /\.(s*)css$/,
                 use: ["style-loader","css-loader","sass-loader"]
