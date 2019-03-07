@@ -81,3 +81,34 @@ CREATE TABLE `authorities` (
   REFERENCES `users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+DROP TABLE IF EXISTS `dashboard`;
+
+CREATE TABLE `dashboard` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `team_name` varchar(500) DEFAULT NULL,
+  `step_status` varchar(45) DEFAULT NULL,
+  `scheduled_time` varchar(45) DEFAULT NULL,
+  `current_step` int(11) DEFAULT 1,
+  
+  
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `pending_issue`;
+
+CREATE TABLE `pending_issue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) DEFAULT NULL,
+  `assigned_to` varchar(45) DEFAULT NULL,
+  `solved` varchar(45) DEFAULT NULL,
+  `dashboard_id` int(11) DEFAULT NULL,
+   
+  PRIMARY KEY (`id`),
+  
+  KEY `FK_DASHBOARD_idx` (`dashboard_id`),
+  CONSTRAINT `FK_DASHBOARD`
+  FOREIGN KEY (`dashboard_id`)
+  REFERENCES `dashboard` (`id`)
+  
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

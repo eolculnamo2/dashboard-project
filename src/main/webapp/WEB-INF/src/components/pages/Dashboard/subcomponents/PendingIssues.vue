@@ -13,7 +13,8 @@
                         :class="issue.solved ? 'pi-issue-heading--solved' : 'pi-issue-heading--unsolved'">{{issue.name}}</h3>
                     <div class="pi-issue-assigned">Assigned To: {{issue.assignedTo}}</div>
                 </div>
-                <button class="pi-issue-btn">{{solvedText(issue.solved)}}</button>
+                <button class="pi-issue-btn"
+                        :class="{'pi-issue-btn--solved' : issue.solved}">{{solvedText(issue.solved)}}</button>
             </div>
         </div>
     </div>
@@ -93,5 +94,8 @@ export default {
         padding: .2rem 1rem;
         outline: none;
         cursor: pointer;
+        &--solved {
+            background: $gray1;
+        }
     }
 </style>
