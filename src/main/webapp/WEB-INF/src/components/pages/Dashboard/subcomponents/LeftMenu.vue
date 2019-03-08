@@ -8,7 +8,14 @@
         </div>
         <div class="lm-bottom-box">
             <ul class="lm-links">
-                <li class="lm-live-updates lm-links--current">Live Update</li>
+                <li class="lm-live-updates"
+                    :class="{'lm-links--current': $route.path === '/deployment-status'}">
+                    <router-link to="/deployment-status">Live Update</router-link>
+                </li>
+                <li class="lm-new-dep"
+                    :class="{'lm-links--current': $route.path === '/new-deployment'}">
+                    <router-link to="/new-deployment">New Deployment</router-link>
+                </li>
                 <li class="lm-settings">Settings</li>
                 <li class="lm-logout"><a href="/logout">Logout</a></li>
             </ul>
@@ -88,6 +95,14 @@
         &:before {
                 content: "";
                 background: url("../../../../images/logout-icon.png") center center no-repeat;
+                padding: 1rem;
+                margin-right: 1rem;
+            }
+    }
+    .lm-new-dep {
+        &:before {
+                content: "";
+                background: url("../../../../images/new-deploy-icon.png") center center no-repeat;
                 padding: 1rem;
                 margin-right: 1rem;
             }

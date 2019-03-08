@@ -68,7 +68,7 @@ export default {
         &--unsolved {
             &:before {
                 content: "";
-                background: url("../../../../images/unsolved-icon.png") center center no-repeat;
+                background: url("../../../../../images/unsolved-icon.png") center center no-repeat;
                 padding: .75rem;
                 margin-right: .5rem;
             }
@@ -76,7 +76,7 @@ export default {
         &--solved {
             &:before {
                 content: "";
-                background: url("../../../../images/solved-icon.png") center center no-repeat;
+                background: url("../../../../../images/solved-icon.png") center center no-repeat;
                 padding: .75rem;
                 margin-right: .5rem;
             }

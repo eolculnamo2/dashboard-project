@@ -24,7 +24,7 @@
     </div>
 </template>
 <style lang="scss">
-    @import '../../../../settings.scss';
+    @import '../../../../../settings.scss';
     .ub-flex-wrap {
         display: flex;
         justify-content: space-between;

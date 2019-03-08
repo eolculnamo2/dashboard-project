@@ -9,26 +9,15 @@
                    <div>March 1, 2018 - 8:00AM</div>
                </div>
            </div>
-           <UpdateBlock/>
-           <div class="d-flex-wrap d-body-wrap">
-               <div class="d-flexed">
-                    <IncludedFixes/>
-                    <PendingIssues/>
-               </div>
-               <DeploymentNotes/>
-           </div>
+           <router-view></router-view>
            <div class="d-project-by">Project by Rob Bertram</div>
         </div>
     </div>
 </template>
 <script>
 import LeftMenu from './subcomponents/LeftMenu.vue';
-import UpdateBlock from './subcomponents/UpdateBlocks.vue';
-import IncludedFixes from './subcomponents/IncludedFixes.vue'
-import DeploymentNotes from './subcomponents/DeploymentNotes.vue';
-import PendingIssues from './subcomponents/PendingIssues.vue';
 export default {
-    components: { LeftMenu, UpdateBlock, IncludedFixes, DeploymentNotes, PendingIssues }
+    components: { LeftMenu }
 }
 </script>
 <style lang="scss" scoped>
