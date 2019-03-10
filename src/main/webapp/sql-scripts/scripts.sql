@@ -83,6 +83,8 @@ CREATE TABLE `authorities` (
 
 
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS `dashboard`;
 
 CREATE TABLE `dashboard` (
@@ -92,9 +94,9 @@ CREATE TABLE `dashboard` (
   `scheduled_time` varchar(45) DEFAULT NULL,
   `current_step` int(11) DEFAULT 1,
   
-  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 DROP TABLE IF EXISTS `pending_issue`;
 
 CREATE TABLE `pending_issue` (
@@ -109,6 +111,34 @@ CREATE TABLE `pending_issue` (
   KEY `FK_DASHBOARD_idx` (`dashboard_id`),
   CONSTRAINT `FK_DASHBOARD`
   FOREIGN KEY (`dashboard_id`)
+  REFERENCES `dashboard` (`id`)
+  
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `included_fix` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fix` varchar(500) DEFAULT NULL,
+  `dashboard_id_fix` int(11) DEFAULT NULL,
+   
+  PRIMARY KEY (`id`),
+  
+  KEY `FK_DASHBOARD_idx` (`dashboard_id_fix`),
+  CONSTRAINT `FK_DASHBOARD1`
+  FOREIGN KEY (`dashboard_id_fix`)
+  REFERENCES `dashboard` (`id`)
+  
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `deployment_note` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `note` varchar(500) DEFAULT NULL,
+  `dashboard_id_note` int(11) DEFAULT NULL,
+   
+  PRIMARY KEY (`id`),
+  
+  KEY `FK_DASHBOARD_idx` (`dashboard_id_note`),
+  CONSTRAINT `FK_DASHBOARD2`
+  FOREIGN KEY (`dashboard_id_note`)
   REFERENCES `dashboard` (`id`)
   
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

@@ -9,13 +9,16 @@
                     <h1 class="nd_big-header">Deployment Details</h1>
                     <div class="nd_label">Deployment Name</div>
                     <input class="nd_input"
-                            type="text">
+                            type="text"
+                            v-model="depName">
                     <div class="nd_label">Deployment Date</div>
                     <input class="nd_input"
-                            type="text">
+                            type="text"
+                            v-model="depDate">
                     <div class="nd_label">Deployment Time</div>
                     <input class="nd_input"
-                            type="text">
+                            type="text"
+                            v-model="depTime">
                 </div>
                 <img class="nd_img" src="../../../../../images/Deployment-img.png" alt="deployment-image">
             </div>
@@ -50,15 +53,21 @@
                 </div>
                 <div class="nd_flex-wrap">
                     <div class="nd_100" v-for="(x,i) in pendingIssues" :key="'pendingIssue'+i">
-                        <div class="nd_label">Fix #{{i+1}}</div>
                         <div class="nd_side-by-side">
-                            <input class="nd_input"
-                                type="text"
-                                >
-                            <select class="nd_select" v-model="x.assignedTo">
-                                <option value="Rob">Rob</option>
-                                <option value="Joe">Joe</option>
-                            </select>
+                            <div>
+                                <div class="nd_label">Issue #{{i+1}}</div>
+                                <input class="nd_input"
+                                    type="text"
+                                    v-model="x.name"
+                                    >
+                            </div>
+                            <div>
+                               <div class="nd_label">Assigned To</div>
+                                <select class="nd_select" v-model="x.assignedTo">
+                                    <option value="Rob">Rob</option>
+                                    <option value="Joe">Joe</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,11 +84,12 @@
                 </div>
                     <div class="nd_100" v-for="(x,i) in deploymentNotes" :key="'pendingIssue'+i">
                         <div class="nd_label">Note #{{i+1}}</div>
-                        <textarea class="nd_input nd_input--full"/>
+                        <textarea class="nd_input nd_input--full" v-model="x.note"/>
                 </div>
             </div>
              <button class="nd_create-btn"
                             type="button"
+                            @click="createDeployment()"
                             >Create Deployment</button>
         </div>
     </div>
@@ -88,6 +98,9 @@
 export default {
     data() {
         return {
+            depName: "",
+            depDate: "",
+            depTime: "",
             includedFixes: [
                 {fix: ""},{fix: ""},{fix: ""}
             ],
@@ -101,6 +114,23 @@ export default {
         }
     },
     methods: {
+        createDeployment() {
+            const payload = {
+                depName: this.depName,
+                depDate: this.depDate,
+                depTime: this.depTime,
+                includedFixes: this.includedFixes,
+                pendingIssues: this.pendingIssues,
+                deploymentNotes: this.deploymentNotes
+            }
+
+            fetch('/create-deployment', {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+            }).then(() => alert("Created"))
+        },
         addIncludedFix() {
             this.includedFixes.push({name:""});
         },
@@ -229,6 +259,7 @@ export default {
     .nd_select {
         width: 400px;
         height: 50px;
+        box-shadow: 0 2px 3px rgba(0,0,0, .3);
     }
     .nd_100 {
         width: 100%;
