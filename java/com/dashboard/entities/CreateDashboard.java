@@ -33,7 +33,6 @@ public class CreateDashboard {
 			
 			for(int i = 0; i < pendingIssues.length(); i++) {
 				JSONObject issue = pendingIssues.getJSONObject(i);
-				
 				PendingIssue p = new PendingIssue(issue.getString("name"),
 												  issue.getString("assignedTo"), 
 												  "0", 
@@ -44,10 +43,9 @@ public class CreateDashboard {
 			}	
 			for(int i = 0; i < includedFixes.length(); i++) {
 				JSONObject issue = includedFixes.getJSONObject(i);
-				
 				IncludedFixes p = new IncludedFixes(issue.getString("fix"),
 												    dashboard);
-			
+
 				dashboard.addIncludedFix(p);
 				new CreateIncludedFix(p);
 			}	

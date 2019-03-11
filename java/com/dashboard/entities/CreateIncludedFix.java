@@ -6,11 +6,13 @@ import org.hibernate.cfg.Configuration;
 
 public class CreateIncludedFix {
 	public CreateIncludedFix(IncludedFixes includedFixes) {
-
+		System.out.println("IN FIX CREATE");
 		SessionFactory factory = new Configuration()
 		.configure()
 		.addAnnotatedClass(Dashboard.class)
+		.addAnnotatedClass(PendingIssue.class)
 		.addAnnotatedClass(IncludedFixes.class)
+		.addAnnotatedClass(DeploymentNote.class)
 		.buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();

@@ -12,6 +12,8 @@ public class CreatePendingIssue {
 			.configure()
 			.addAnnotatedClass(Dashboard.class)
 			.addAnnotatedClass(PendingIssue.class)
+			.addAnnotatedClass(IncludedFixes.class)
+			.addAnnotatedClass(DeploymentNote.class)
 			.buildSessionFactory();
 			
 			Session session = factory.getCurrentSession();
@@ -21,8 +23,6 @@ public class CreatePendingIssue {
 			session.beginTransaction();
 			session.save(pendingIssue);
 			session.getTransaction().commit();
-			System.out.println(pendingIssue.getName());
-			System.out.println("SAVED");
 			
 		} catch(Exception e) {
 			System.out.println(e);

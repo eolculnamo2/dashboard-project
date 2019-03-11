@@ -38,11 +38,11 @@ public class DeploymentNote {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Dashboard getDashboard() {
-		return dashboard;
+	public Dashboard getDashboard2() {
+		return dashboard2;
 	}
-	public void setDashboard(Dashboard dashboard) {
-		this.dashboard = dashboard;
+	public void setDashboard2(Dashboard dashboard2) {
+		this.dashboard2 = dashboard2;
 	}
 	
 }

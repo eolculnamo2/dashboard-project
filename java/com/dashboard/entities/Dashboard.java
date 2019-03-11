@@ -1,5 +1,6 @@
 package com.dashboard.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Dashboard {
 	private String scheduledTime;
 	@Column(name="current_step")
 	private int currentStep;
-	@OneToMany(mappedBy="dashboard")
+	@OneToMany(mappedBy="dashboard2")
 	private List<DeploymentNote> deploymentNotes;
 	@OneToMany(mappedBy="dashboard")
 	private List<IncludedFixes> includedFixes;
@@ -54,18 +55,27 @@ public class Dashboard {
 	}
 	
 	public void addPendingIssue(PendingIssue issue) {
+		if(pendingIssues == null) {
+			pendingIssues = new ArrayList<PendingIssue>();
+		}
 		pendingIssues.add(issue);
 		issue.setDashboard(this);
 	}
 	
 	public void addIncludedFix(IncludedFixes fix) {
+		if(includedFixes == null) {
+			includedFixes = new ArrayList<IncludedFixes>();
+		}
 		includedFixes.add(fix);
 		fix.setDashboard(this);
 	}
 	
 	public void addDeploymentNote(DeploymentNote note) {
+		if(deploymentNotes == null) {
+			deploymentNotes = new ArrayList<DeploymentNote>();
+		}
 		deploymentNotes.add(note);
-		note.setDashboard(this);
+		note.setDashboard2(this);
 	}
 	
 	public int getCurrentStep() {
