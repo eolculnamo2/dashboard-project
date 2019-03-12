@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,8 +35,11 @@ public class Dashboard {
 	private List<IncludedFixes> includedFixes;
 	@OneToMany(mappedBy="dashboard")
 	private List<PendingIssue> pendingIssues;
+	@ManyToOne
+	@JoinColumn(name="teamname")
+	Team team;
 	//private List<Teammate> userData;
-	
+
 	public Dashboard() {}
 	
 	public Dashboard(int currentStep, 
@@ -135,5 +140,13 @@ public class Dashboard {
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
+	}
+	
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 }

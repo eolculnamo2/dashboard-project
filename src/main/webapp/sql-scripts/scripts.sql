@@ -93,8 +93,16 @@ CREATE TABLE `dashboard` (
   `step_status` varchar(45) DEFAULT NULL,
   `scheduled_time` varchar(45) DEFAULT NULL,
   `current_step` int(11) DEFAULT 1,
+  `teamname_key` varchar(55) DEFAULT NULL,
+
+   PRIMARY KEY (`id`),
+
+  KEY `FK_TEAM_idx` (`teamname_key`),
+  CONSTRAINT `FK_TEAMNAME`
+  FOREIGN KEY (`teamname_key`)
+  REFERENCES `team` (`teamname`)
   
-  PRIMARY KEY (`id`)
+ 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `pending_issue`;
@@ -115,6 +123,8 @@ CREATE TABLE `pending_issue` (
   
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `included_fix`;
+
 CREATE TABLE `included_fix` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fix` varchar(500) DEFAULT NULL,
@@ -128,6 +138,8 @@ CREATE TABLE `included_fix` (
   REFERENCES `dashboard` (`id`)
   
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `deployment_note`;
 
 CREATE TABLE `deployment_note` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
