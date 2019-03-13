@@ -10,7 +10,7 @@
             <ul class="lm-links">
                 <li class="lm-live-updates"
                     :class="{'lm-links--current': $route.path === '/deployment-status'}">
-                    <router-link to="/deployment-status">Live Update</router-link>
+                    <router-link to="/select-deployment">Live Update</router-link>
                 </li>
                 <li class="lm-new-dep"
                     :class="{'lm-links--current': $route.path === '/new-deployment'}">

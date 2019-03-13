@@ -16,8 +16,8 @@ public class Team {
 	private String teamname;
 	@Column(name="founder")
 	private String founder;
-	@OneToMany(mappedBy="team")
-	private ArrayList<Dashboard> dashboards;
+//	@OneToMany(mappedBy="team")
+//	private ArrayList<Dashboard> dashboards;
 	
 	public Team() {
 		
@@ -28,14 +28,14 @@ public class Team {
 		this.founder = founder;
 	}
 	
-	public void addDashboard(Dashboard dashboard) {
-		if(dashboards == null) {
-			dashboards = new ArrayList<Dashboard>();
-		}
-		dashboards.add(dashboard);
-		dashboard.setTeam(this);
-	}
-	
+//	public void addDashboard(Dashboard dashboard) {
+//		if(dashboards == null) {
+//			dashboards = new ArrayList<Dashboard>();
+//		}
+//		dashboards.add(dashboard);
+//		dashboard.setTeam(this);
+//	}
+//	
 	public String getTeamname() {
 		return teamname;
 	}

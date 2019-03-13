@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dashboard.api.DashboardDTO;
 import com.dashboard.entities.CreateDashboard;
 import com.dashboard.entities.CreateTeam;
 import com.dashboard.entities.CreateTeammate;
@@ -21,6 +23,7 @@ import com.dashboard.entities.Dashboard;
 import com.dashboard.entities.DeploymentNote;
 import com.dashboard.entities.IncludedFixes;
 import com.dashboard.entities.PendingIssue;
+import com.dashboard.entities.ReadCurrentTeam;
 import com.dashboard.entities.Team;
 import com.dashboard.entities.Teammate;
 import com.dashboard.helpers.Helpers;
@@ -81,5 +84,16 @@ public class MainController {
 
 		return "Success";
 		
+	}
+	
+	@GetMapping("/dashboard-dto")
+	@ResponseBody
+	public DashboardDTO sendDashboardDTO(Authentication authentication) {
+		DashboardDTO dto = new DashboardDTO();
+		
+		Team t = new ReadCurrentTeam(authentication.getName()).getTeam();
+		
+		dto.setTeam(t);
+		return dto;
 	}
 }

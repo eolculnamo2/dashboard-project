@@ -22,7 +22,7 @@ public class Dashboard {
 	@Column(name="id")
 	private int id; //OneToMany with PendingIssues
 	@Column(name="team_name")
-	private String teamName; // ManyToOne iwth Team
+	private String teamName; // ManyToOne with Team
 	@Column(name="step_status")
 	private String stepStatus;
 	@Column(name="scheduled_time")
