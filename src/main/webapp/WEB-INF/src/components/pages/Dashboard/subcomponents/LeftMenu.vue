@@ -9,7 +9,7 @@
         <div class="lm-bottom-box">
             <ul class="lm-links">
                 <li class="lm-live-updates"
-                    :class="{'lm-links--current': $route.path === '/deployment-status'}">
+                    :class="{'lm-links--current': $route.path === '/deployment-status' || $route.path === '/select-deployment'}">
                     <router-link to="/select-deployment">Live Update</router-link>
                 </li>
                 <li class="lm-new-dep"
