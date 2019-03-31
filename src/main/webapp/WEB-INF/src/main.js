@@ -6,12 +6,12 @@ import App from './App.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    mode: 'history',
-    routes: Router
+  mode: 'history',
+  routes: Router
 });
 
 new Vue({
-    el: "#app",
-    render: h=>h(App),
-    router
+  el: "#app",
+  render: h=>h(App),
+  router
 })

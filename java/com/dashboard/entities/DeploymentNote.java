@@ -17,13 +17,13 @@ public class DeploymentNote {
 	private String note;
 	@ManyToOne
 	@JoinColumn(name="dashboard_id_note")
-	private Dashboard dashboard2;
+	private Dashboard dashboard;
 	
 	public DeploymentNote() {};
 	
 	public DeploymentNote(String note, Dashboard dashboard) {
 		this.note = note;
-		this.dashboard2 = dashboard;
+		this.dashboard = dashboard;
 	}
 	
 	public int getId() {
@@ -38,11 +38,11 @@ public class DeploymentNote {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Dashboard getDashboard2() {
-		return dashboard2;
+	public Dashboard getDashboard() {
+		return dashboard;
 	}
-	public void setDashboard2(Dashboard dashboard2) {
-		this.dashboard2 = dashboard2;
+	public void setDashboard(Dashboard dashboard) {
+		this.dashboard = dashboard;
 	}
 	
 }

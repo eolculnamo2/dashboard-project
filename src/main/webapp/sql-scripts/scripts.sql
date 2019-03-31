@@ -34,6 +34,8 @@ USE `browsergame`;
 -- Table structure for table `student`
 --
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
@@ -44,6 +46,12 @@ CREATE TABLE `users` (
   `authority` int(5) DEFAULT NULL,
   `teamname` varchar(45) DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
+
+  KEY `FK_TEAM_idx` (`teamname`),
+  CONSTRAINT `FK_TEAMNAME1`
+  FOREIGN KEY (`teamname`)
+  REFERENCES `teams` (`teamname`),
+  
   
   
   PRIMARY KEY (`username`)
@@ -54,15 +62,13 @@ DROP TABLE IF EXISTS `teams`;
 
 CREATE TABLE `teams` (
   `teamname` varchar(55) UNIQUE,
-  `founder` varchar(55) DEFAULT,
+  `founder` varchar(55) DEFAULT NULL,
   
   PRIMARY KEY (`teamname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 /* TWO */
-CREATE DATABASE  IF NOT EXISTS `browsergame`;
-USE `browsergame`; 
 
 --
 -- Table structure for table `student`
@@ -83,12 +89,13 @@ CREATE TABLE `authorities` (
 
 
 
-SET FOREIGN_KEY_CHECKS = 0;
+
 
 DROP TABLE IF EXISTS `dashboard`;
 
 CREATE TABLE `dashboard` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deployment_name` varchar(500) DEFAULT NULL,
   `team_name` varchar(500) DEFAULT NULL,
   `step_status` varchar(45) DEFAULT NULL,
   `scheduled_time` varchar(45) DEFAULT NULL,

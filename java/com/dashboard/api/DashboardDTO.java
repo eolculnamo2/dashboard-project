@@ -3,6 +3,7 @@ package com.dashboard.api;
 import java.util.ArrayList;
 
 import com.dashboard.entities.Dashboard;
+import com.dashboard.entities.ReadCurrentTeam;
 import com.dashboard.entities.Team;
 
 public class DashboardDTO {
@@ -11,6 +12,12 @@ public class DashboardDTO {
 	private String userImg;
 	private Team team;
 	private ArrayList<Dashboard> dashboards;
+	
+	public DashboardDTO(String username) {
+		ReadCurrentTeam team = new ReadCurrentTeam(username);
+		this.team = team.getTeam();
+		this.username = username;
+	}
 	
 	
 	public String getUsername() {

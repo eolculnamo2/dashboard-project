@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.dashboard.helpers.Helpers;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -34,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().formLogin()
 			.loginPage("/login")
 			.loginProcessingUrl("/login-user")
-			.defaultSuccessUrl("/deployment-status", true)
+			.defaultSuccessUrl("/deployment", true)
 			.permitAll()
 			.and()
 			.logout()

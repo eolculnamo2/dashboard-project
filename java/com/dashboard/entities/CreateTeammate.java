@@ -9,6 +9,11 @@ public class CreateTeammate {
 
 		SessionFactory factory = new Configuration()
 		.configure()
+		.addAnnotatedClass(Dashboard.class)
+		.addAnnotatedClass(DeploymentNote.class)
+		.addAnnotatedClass(IncludedFixes.class)
+		.addAnnotatedClass(PendingIssue.class)
+		.addAnnotatedClass(Team.class)
 		.addAnnotatedClass(Teammate.class)
 		.buildSessionFactory();
 		
@@ -18,7 +23,6 @@ public class CreateTeammate {
 		
 		session.beginTransaction();
 		session.save(teammate);
-		new CreateTeammate(teammate);
 		session.getTransaction().commit();
 		System.out.println(teammate.getUsername());
 		System.out.println("SAVED");

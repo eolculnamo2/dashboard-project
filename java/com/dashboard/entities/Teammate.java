@@ -3,6 +3,8 @@ package com.dashboard.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
@@ -28,8 +30,9 @@ public class Teammate {
 	private String email;
 	@Column(name="authority")
 	private int authorityLevel;
-	@Column(name="teamname")
-	private String teamname;
+	@ManyToOne
+	@JoinColumn(name="teamname")
+	private Team team;
 	@Column(name="enabled")
 	private int enabled;
 	@Column(table="authorities")
@@ -39,13 +42,14 @@ public class Teammate {
 		
 	}
 	
-	public Teammate(String username, String password, String displayName, String email, int authorityLevel, String teamname) {
+	public Teammate(String username, String password, String displayName, String email, int authorityLevel, Team team) {
 		this.username = username;
 		this.password = "{bcrypt}"+new BCryptPasswordEncoder().encode(password);;
 		this.displayName = displayName;
 		this.email = email;
 		this.authorityLevel = authorityLevel;
-		this.teamname = teamname;
+		this.team = team;
+		this.enabled=1;
 		switch(authorityLevel) {
 			case 1: this.authority = "ROLE_USER";
 					break;
@@ -54,7 +58,6 @@ public class Teammate {
 			case 3: this.authority = "ROLE_OWNER";
 					break;
 			default: this.authority = "ROLE_USER";
-			this.enabled=1;
 		}
 	}
 	
@@ -88,12 +91,14 @@ public class Teammate {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	public String getTeamname() {
-		return teamname;
+	public Team getTeam() {
+		return team;
 	}
-	public void setTeamname(String teamname) {
-		this.teamname = teamname;
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
+
 	public int getAuthorityLevel() {
 		return authorityLevel;
 	}

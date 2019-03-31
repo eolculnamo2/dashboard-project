@@ -1,7 +1,5 @@
 package com.dashboard.entities;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,10 +12,12 @@ public class CreateDashboard {
 
 			SessionFactory factory = new Configuration()
 			.configure()
+			.addAnnotatedClass(Team.class)
+			.addAnnotatedClass(Teammate.class)
 			.addAnnotatedClass(Dashboard.class)
-			.addAnnotatedClass(PendingIssue.class)
-			.addAnnotatedClass(IncludedFixes.class)
 			.addAnnotatedClass(DeploymentNote.class)
+			.addAnnotatedClass(IncludedFixes.class)
+			.addAnnotatedClass(PendingIssue.class)
 			.buildSessionFactory();
 			
 			Session session = factory.getCurrentSession();
@@ -25,9 +25,6 @@ public class CreateDashboard {
 		try {
 			
 			session.beginTransaction();
-			
-			
-
 			session.save(dashboard);
 			session.getTransaction().commit();
 			

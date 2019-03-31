@@ -21,29 +21,32 @@ public class Dashboard {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id; //OneToMany with PendingIssues
-	@Column(name="team_name")
-	private String teamName; // ManyToOne with Team
+	@Column(name="deployment_name")
+	private String deploymentName; // ManyToOne with Team
 	@Column(name="step_status")
 	private String stepStatus;
 	@Column(name="scheduled_time")
 	private String scheduledTime;
 	@Column(name="current_step")
 	private int currentStep;
-	@OneToMany(mappedBy="dashboard2")
+	@OneToMany(mappedBy="dashboard")
 	private List<DeploymentNote> deploymentNotes;
 	@OneToMany(mappedBy="dashboard")
 	private List<IncludedFixes> includedFixes;
 	@OneToMany(mappedBy="dashboard")
 	private List<PendingIssue> pendingIssues;
 	@ManyToOne
-	@JoinColumn(name="teamname")
+	@JoinColumn(name="team_name")
 	Team team;
+	@ManyToOne
+	@JoinColumn(name="teamname_key")
+	Dashboard dashboard;
 	//private List<Teammate> userData;
 
 	public Dashboard() {}
 	
 	public Dashboard(int currentStep, 
-					 String teamName,
+					 String deploymentName,
 				 	 String stepStatus, 
 				 	 String scheduledTime, 
 				 	 List<DeploymentNote>deploymentNotes, 
@@ -52,7 +55,7 @@ public class Dashboard {
 				 	// List<Teammate>userData
 				 	 ) {
 		this.currentStep = currentStep;
-		this.teamName = teamName;
+		this.deploymentName = deploymentName;
 		this.stepStatus = stepStatus;
 		this.scheduledTime = scheduledTime;
 		this.pendingIssues = pendingIssues;
@@ -80,7 +83,7 @@ public class Dashboard {
 			deploymentNotes = new ArrayList<DeploymentNote>();
 		}
 		deploymentNotes.add(note);
-		note.setDashboard2(this);
+		note.setDashboard(this);
 	}
 	
 	public int getCurrentStep() {
@@ -134,12 +137,12 @@ public class Dashboard {
 		this.id = id;
 	}
 
-	public String getTeamName() {
-		return teamName;
+	public String getDeploymentName() {
+		return deploymentName;
 	}
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
+	public void setDeploymentName(String deploymentName) {
+		this.deploymentName = deploymentName;
 	}
 	
 	public Team getTeam() {
@@ -148,5 +151,12 @@ public class Dashboard {
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+	public Dashboard getDashboard() {
+		return dashboard;
+	}
+
+	public void setDashboard(Dashboard dashboard) {
+		this.dashboard = dashboard;
 	}
 }

@@ -5,12 +5,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class CreateTeam {
-	
-		public CreateTeam(Team team) {
+		
+	//TODO add list of new teammates to add
+		public CreateTeam(Team team, Teammate founder) {
 
 			SessionFactory factory = new Configuration()
 			.configure()
 			.addAnnotatedClass(Team.class)
+			.addAnnotatedClass(Teammate.class)
+			.addAnnotatedClass(Dashboard.class)
+			.addAnnotatedClass(DeploymentNote.class)
+			.addAnnotatedClass(IncludedFixes.class)
+			.addAnnotatedClass(PendingIssue.class)
 			.buildSessionFactory();
 			
 			Session session = factory.getCurrentSession();
@@ -20,6 +26,12 @@ public class CreateTeam {
 			session.beginTransaction();
 			session.save(team);
 			session.getTransaction().commit();
+			
+			team.addTeammate(founder);
+			//String username, String password, String displayName, String email, int authorityLevel
+			new CreateTeammate(founder);
+			
+			
 			System.out.println(team.getTeamname());
 			System.out.println("SAVED");
 			
